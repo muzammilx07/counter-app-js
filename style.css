@@ -1,0 +1,119 @@
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+  :root {
+    --clr-1: #052b2f;
+    --clr-2: #073438;
+    --clr-3: #0e4b50;
+    --clr-4: #2d8f85;
+    --clr-5: #637c54;
+  }
+  
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: var(--clr-2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    position: relative; 
+    width: 15rem;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: var(--clr-1);
+    border-radius: 0.5rem;
+    z-index: 10;
+}
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  inset: -0.5rem;
+  z-index: -1;
+  background: conic-gradient(
+    from var(--gradient-angle),
+    var(--clr-3),
+    var(--clr-4),
+    var(--clr-5),
+    var(--clr-4),
+    var(--clr-3)
+  );
+  border-radius: inherit;
+  animation: rotation 20s linear infinite;
+}
+
+.container::after {
+  filter: blur(3.5rem);
+}
+.container > div {
+    position: relative; 
+    z-index: 20;
+    width: 12rem;
+    height: 8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background: var(--clr-4);
+    top: 4rem;
+    border-radius: 10px;
+}
+
+#resetbtn {
+    position: absolute;
+    bottom: 2.7rem;
+    left: 50%;
+    border: none; /* Remove border */
+    border-radius: 40px;
+    transform: translateX(-50%);
+    padding: 10px 40px;
+    outline: none;
+    z-index: 19;
+    background-color: var(--clr-1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    color: grey;
+}
+
+#resetbtn:hover {
+    background-color: var(--clr-4); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+}
+
+#minusbtn, #plusbtn{
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-color: var(--clr-3);
+    color: white;
+    font-weight: bold;
+}
+#value{
+    font-size:5rem;
+    color: whitesmoke; 
+}
+@keyframes rotation {
+    0% {
+      --gradient-angle: 0deg;
+    }
+    100% {
+      --gradient-angle: 360deg;
+    }
+  }
+  
